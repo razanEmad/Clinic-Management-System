@@ -1,0 +1,88 @@
+
+
+.page-title {
+    /* Centering the H1 text below the header */
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
+    font-size: 36px;
+    color: rgb(40, 32, 75);
+}
+
+.title-divider {
+    border-top: 2px solid rgb(40, 32, 75);
+    width: 20%;
+    margin: 10px auto 50px auto; /* Centers the HR and adds space below */
+}
+
+/* Removed .about_us_big_font as it's not strictly needed for this layout */
+
+.about_us_section {
+    display: flex;
+    align-items: flex-start; /* top-align text and image */
+    justify-content: center; /* Center content block horizontally */
+    gap: 50px;
+    padding: 50px 100px; /* more space around */
+    flex-wrap: wrap; /* makes it responsive */
+    background-color: #f9f9f9;
+    margin-bottom: 30px; /* Space between sections */
+}
+
+/* New class to reverse the order of image and text in the second section */
+.second-section-reverse {
+    flex-direction: row-reverse;
+}
+
+
+.about_us_image img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    /* Ensuring the image has the new class name you set in HTML */
+    /* .au_side_image is not defined here, using the img tag itself or the parent class */
+}
+
+.about_us_text {
+    max-width: 600px;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.about_us_text h2 {
+    color: rgb(40, 32, 75);
+    margin-bottom: 15px;
+}
+
+.about_us_text ul {
+    margin-top: 20px;
+    padding-left: 20px;
+    list-style-type: disc; /* Ensure clear list markers */
+}
+
+.about_us_text li {
+    margin-bottom: 10px;
+}
+
+/* You had these extra classes for the previous content, which I replaced: */
+/* .about_us_section1, .about_us_image1, .au_side_image1 */
+/* Make sure to clean up any unused classes if they are only in the old HTML */
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 900px) {
+    .about_us_section {
+        padding: 30px;
+        /* Default for small screen: Stack vertically */
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .second-section-reverse {
+        /* On small screens, both sections stack normally */
+        flex-direction: column; 
+    }
+
+    .about_us_image img {
+        width: 100%;
+        max-width: 400px;
+    }
+}

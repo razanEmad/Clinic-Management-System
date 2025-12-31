@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header>
+    <img src="/canvas_logo2.png" width="85px" height="60px">
+    <h2><a href="/home">Clinic</a></h2>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/doctors">Doctors</a></li>
+            {% if user %}
+                {% if user.role == 'doctor' %}
+                    <li><a href="/doctor-dashboard">My Dashboard</a></li>
+                {% else %}
+                    <li><a href="/my-appointments">Appointments</a></li>
+                    <li><a href="/profile">My Profile</a></li>
+                {% endif %}
+                <li><a href="/logout" style="color: red;">Logout</a></li>
+            {% else %}
+                <li><a href="/login">Log in</a></li>
+                <li><a href="/register">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<!-- FLASH MESSAGES CONTAINER -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}">
+    {{ message }}
+</div>
+
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+        
+        <!-- <header>
+            <img src="canvas_logo2.png" width="85px" height="60px">
+            <h2><a href="#">Clinic</a></h2> -->
+            <!-- <h2>Clinic</h2> -->
+            <!-- <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="/doctors">Doctors</a></li>
+                    <li><a href="/login">Log in</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
+        </header> -->
+        
+        <div class="hero" id="home">
+            <!-- <div class="container" > -->
+                    <img src="StockSnap_ET9TSSX4H6.jpg" >
+                    <!-- <div class="hero-text"> -->
+                        <!--<h2>Serving Your Health Need Is Our Priority</h2>-->
+                    <!-- </div> -->
+                    <!-- <h2>Serving Your Health Need Is Our Priority</h2> -->
+                     <div class="hero-text">
+                        <h1>THE HIGHEST QUALITY <strong><br>HEALTHCARE</br></strong></h1>
+                        <h3>Your good health is our greatest achievement</h3>
+                        <button onclick="window.location.href='doctors.html'">Book an Appointment</button>
+                    </div>
+            <!-- </div> -->
+        </div>
+                <div class="about_us_section1" id="about">
+                    <div class="about_us_title_center">
+                        <h1 class="page-title">About Our Clinic</h1>
+                        <hr class="title-divider">
+                    </div>
+                    <div class="row">
+                        <div class="col1">
+                            <img src="ICU-22_0327_Ext_V3-copy.jpg" width="300" >
+                        </div>
+                        <div class="about_us_text">
+                            <h2>Our Vision</h2>
+                            <p>Since opening our doors nearly 16 years ago, DentCo Clinic has grown into a cornerstone of the financial district, providing specialized, compassionate care across multiple disciplines. While our foundation began with the exemplary Adam Smith, DDS and our dental team, we have expanded to house a full spectrum of health services, including Wellness, Dermatology, and more. We understand that choosing a healthcare provider is a significant decision, and we are honored that you are considering our clinic.</p>
+                            <p>At DentCo Clinic, we are redefining the patient experience in a comprehensive Private Practice setting. Across every department and specialist, you will find a practice<strong> where you will:</strong></p>
+                            <!-- <ul>
+                                <li><strong>Be Empowered:</strong> We involve you actively in all health and treatment decisions, ensuring your choices and voice are respected.</li>
+                                <li><strong>Feel Welcomed:</strong> Experience a cohesive atmosphere of warmth, respect, and personalized attention from the moment you arrive.</li>
+                                <li><strong>Trust Our Expertise:</strong> Benefit from the collaborative knowledge of our highly qualified, experienced doctors and specialists who work together for your total well-being.</li>
+                                <li><strong>Receive Exceptional Care:</strong> We are committed to delivering the highest standards of professional service and the best available treatment across all our specialized departments.</li>
+                            </ul> -->
+                        </div>
+                        
+                    </div>
+                    <div class="about_us_text">
+                            <ul class="about-list">
+                                <div class="about-list-items"><li><strong>Be Empowered:</strong> We involve you actively in all health and treatment decisions, ensuring your choices and voice are respected.</li></div>
+                                <div class="about-list-items"><li><strong>Feel Welcomed:</strong> Experience a cohesive atmosphere of warmth, respect, and personalized attention from the moment you arrive.</li></div>
+                                <div class="about-list-items"><li><strong>Trust Our Expertise:</strong> Benefit from the collaborative knowledge of our highly qualified, experienced doctors and specialists who work together for your total well-being.</li></div>
+                                <div class="about-list-items"><li><strong>Receive Exceptional Care:</strong> We are committed to delivering the highest standards of professional service and the best available treatment across all our specialized departments.</li></div>
+                            </ul>
+                    </div>
+                    
+                </div>
+                <footer class="main-footer">
+                    <div class="footer-container">
+                        <div class="footer-col">
+                            <img src="logo.png" alt="MedAll Logo" class="footer-logo">
+                            <p>To receive email releases, simply provide us with your email below</p>
+                            <div class="newsletter-box">
+                                <input type="email" placeholder="Your Email">
+                                <button type="submit"><i class="envelope-icon"></i></button>
+                            </div>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-google"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="footer-col">
+                            <h3>Blog Posts</h3>
+                            <hr class="short-hr">
+                            <div class="blog-item">
+                                <img src="blog1.jpg" alt="Post">
+                                <div>
+                                    <a href="#">Medications & Oral Health</a>
+                                    <span>September 26, 2018</span>
+                                </div>
+                            </div>
+                        <div class="blog-item">
+                            <img src="blog2.jpg" alt="Post">
+                            <div>
+                                <a href="#">Smile For Your Health!</a>
+                                <span>August 22, 2018</span>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="footer-col">
+                    <h3>Our Contacts</h3>
+                    <hr class="short-hr">
+                    <p><i class="map-icon"></i> 1560 Holden Street San Diego, CA 92139</p>
+                    <a href="#" class="map-btn">Get directions on the map →</a>
+                    <p><i class="phone-icon"></i> 1-800-267-0000</p>
+                    <p><i class="mail-icon"></i> info@dentco.net</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Copyright © 2018 DentCo | Privacy Policy</p>
+                <p>For emergency cases: <strong>1-800-267-0000</strong></p>
+            </div>
+        </footer>
+    </body>
+</html>

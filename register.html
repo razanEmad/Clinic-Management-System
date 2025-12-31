@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+         <header>
+    <img src="/canvas_logo2.png" width="85px" height="60px">
+    <h2><a href="/home">Clinic</a></h2>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/doctors">Doctors</a></li>
+            
+            {% if user %}
+                <!-- If the user is logged in -->
+                {% if user.role == 'doctor' %}
+                    <li><a href="/doctor-dashboard">Dashboard</a></li>
+                {% else %}
+                    <li><a href="/my-appointments">Appointments</a></li>
+                    <li><a href="/profile">My Profile</a></li>
+                {% endif %}
+                <li><a href="/logout" style="color: red;">Logout</a></li>
+            {% else %}
+                <!-- If the user is logged out -->
+                <li><a href="/login">Log in</a></li>
+                <li><a href="/register">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<!-- This displays success/error messages at the top of the page -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}">
+    {{ message }}
+</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+        <!-- <header>
+            <img src="canvas_logo2.png" width="85px" height="60px">
+            <h2><a href="#">Clinic</a></h2>
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/login">Log in</a></li> -->
+                    <!-- <li><a href="Home.html">Home</a></li>
+                    <li><a href="login.html">Log in</a></li> -->
+                <!-- </ul>
+            </nav>
+        </header> -->
+        <div class="container-form">
+            <form action="/register" method="POST" class="register-form">
+                    <div class="form-group">
+                        <h1>Create an Account</h1>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullname" class="label">Full name</label>
+                        <div class="form-input">
+                            <input type="text" class="text-box" name="fullname" id="fullname" placeholder="Your full name" required autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="label">Email address</label>
+                        <div class="form-input">
+                            <input type="email" class="text-box" name="email" id="email" placeholder="Your email address" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="label">Password</label>
+                        <div class="form-input">
+                            <input type="password" class="text-box" name="password" id="password" placeholder="Your password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="conpassword" class="label">Confirm password</label>
+                        <div class="form-input">
+                            <input type="password" class="text-box" name="conpassword" id="conpassword" placeholder="Your password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="button">Create Account</button>
+                    </div>
+                    <div class="form-group-small-gap">
+                        <p>Already have an account? <a href="login.html">Log in</a></p>
+                    </div>
+            </form>
+        </div>
+    </body>
+</html>

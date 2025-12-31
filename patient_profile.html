@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Profile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+         <header>
+    <img src="/canvas_logo2.png" width="85px" height="60px">
+    <h2><a href="/home">Clinic</a></h2>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/doctors">Doctors</a></li>
+            
+            {% if user %}
+                <!-- If the user is logged in -->
+                {% if user.role == 'doctor' %}
+                    <li><a href="/doctor-dashboard">Dashboard</a></li>
+                {% else %}
+                    <li><a href="/my-appointments">Appointments</a></li>
+                    <li><a href="/profile">My Profile</a></li>
+                {% endif %}
+                <li><a href="/logout" style="color: red;">Logout</a></li>
+            {% else %}
+                <!-- If the user is logged out -->
+                <li><a href="/login">Log in</a></li>
+                <li><a href="/register">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<!-- This displays success/error messages at the top of the page -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}">
+    {{ message }}
+</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+        <!-- <header>
+            <img src="canvas_logo2.png" width="85px" height="60px">
+            <h2><a href="#">Clinic</a></h2> -->
+            <!-- <h2>Clinic</h2> -->
+            <!-- <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="/doctors">Doctors</a></li>
+                    <li><a href="/my-appointments">Appointments</a></li> -->
+                    <!-- <li><a href="home.html">Home</a></li>
+                    <li><a href="home.html#about">About us</a></li>
+                    <li><a href="doctors.html">Doctors</a></li>
+                    <li><a href="/my-appointments">Appointments</a></li> -->
+                    <!-- <button>log out</button> -->
+                    <!-- <li><a href="register.html">Register</a></li> -->
+                <!-- </ul>
+            </nav>
+        </header> -->
+        <div class="patientprofile">
+    <div class="profile-pic">
+        <img src="/doctor_girl.jpg" width="200px">
+        <div class="patientname"><h2>{{ patient.fullname }}</h2></div>
+    </div>
+    <div class="info">
+        <div class="title"><h3>{% if view_only %}Patient Medical Records{% else %}My Information{% endif %}</h3></div>
+        <div class="info-row"><div class="info-title">Gender</div><div class="info-value">{{ patient.gender }}</div></div>
+        <div class="info-row"><div class="info-title">Age</div><div class="info-value">{{ patient.age }}</div></div>
+        <div class="info-row"><div class="info-title">Phone</div><div class="info-value">{{ patient.phone }}</div></div>
+        
+        <div class="title" style="margin-top:20px;"><h3>Medical History</h3></div>
+        <ul>
+            {% for entry in patient.history %}
+            <li style="font-size: 14px; margin-bottom: 5px;">• {{ entry }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+        <!-- <div class="patientprofile">
+            <div class="profile-pic">
+                <img src="doctor_girl.jpg" width="200px" height="200px">
+                <div class="patientname">
+    <h2>{{ patient.fullname }}</h2>
+</div>
+            </div>
+            <div class="info">
+                <div class="title"><h3>My information</h3></div>
+                 <div class="info-row">
+                    <div class="info-title">Gender</div>
+                    <div class="info-value">{{ patient.gender }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-title">Age</div>
+                    <div class="info-value">{{ patient.gender }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-title">Address</div>
+                    <div class="info-value">{{ patient.gender }}</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-title">Phone number</div>
+                    <div class="info-value">{{ patient.gender }}</div>
+                </div>
+                <div class="info-row">
+    <div class="info-title">Medical History</div>
+    <div class="info-value">{{ patient.history }}</div>
+</div>
+
+            </div>
+        </div> -->
+    </body>
+</html>

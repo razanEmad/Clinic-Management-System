@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Doctors</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <header>
+    <img src="/canvas_logo2.png" width="85px" height="60px">
+    <h2><a href="/home">Clinic</a></h2>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/doctors">Doctors</a></li>
+            
+            {% if user %}
+                <!-- If the user is logged in -->
+                {% if user.role == 'doctor' %}
+                    <li><a href="/doctor-dashboard">Dashboard</a></li>
+                {% else %}
+                    <li><a href="/my-appointments">Appointments</a></li>
+                    <li><a href="/profile">My Profile</a></li>
+                {% endif %}
+                <li><a href="/logout" style="color: red;">Logout</a></li>
+            {% else %}
+                <!-- If the user is logged out -->
+                <li><a href="/login">Log in</a></li>
+                <li><a href="/register">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<!-- This displays success/error messages at the top of the page -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}">
+    {{ message }}
+</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+        <!-- <header>
+            <img src="canvas_logo2.png" width="85px" height="60px">
+            <h2><a href="#">Clinic</a></h2> -->
+            <!-- <h2>Clinic</h2> -->
+            <!-- <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="/doctors">Doctors</a></li>
+                    <li><a href="/login">Log in</a></li>
+                    <li><a href="register.html">Register</a></li> -->
+                    <!-- <li><a href="home.html">Home</a></li>
+                    <li><a href="home.html#about">About us</a></li> -->
+                    <!-- <li><a href="doctors.html">Doctors</a></li> -->
+                    <!-- <li><a href="login.html">Log in</a></li>
+                    <li><a href="register.html">Register</a></li> -->
+                <!-- </ul>
+            </nav>
+        </header> -->
+        <div class="doctors" id="doctors">
+            <!-- <div class="title"> -->
+                <!-- <img src="background.jpg">
+                <div class="title-text">
+                    <h1>Our Specialists</h1>
+                </div> -->
+            <!-- </div> -->
+             <h1>Our Specialists</h1>
+            <div class="categories">
+                <nav>
+                    <ul>
+                        <li><a onclick="filterCategory('all')">All departments</a></li>
+                        <li><a onclick="filterCategory('cardiology')">Cardiology</a></li>
+                        <li><a onclick="filterCategory('dental')">Dental</a></li>
+                        <li><a onclick="filterCategory('neurology')">Neurology</a></li>
+                        <li><a onclick="filterCategory('pediatric')">Pediatric</a></li>
+                        <li><a onclick="filterCategory('pulmonary')">Pulmonary</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="doctor-list">
+                                <!-- Change your doctor cards to look like this -->
+                <div class="doctor dental" onclick="window.location.href='/doctor/1'">
+                    <img src="doctor1.jpg">
+                    <div class="details">
+                        <h3>Dr. Jessica Brown</h3>
+                        <h5>Dentist</h5>
+                    </div>
+                </div>
+                <div class="doctor cardiology" onclick="window.location.href='/doctor/2'">
+                    <img src="doctor2.jpg">
+                    <div class="details">
+                        <h3>Dr. Brain Adam</h3>
+                        <h5>Cardiologist</h5>
+                    </div>
+                </div>
+                <div class="doctor neurology" onclick="window.location.href='/doctor/3'">
+                    <img src="doctor3.jpg">
+                    <div class="details">
+                        <h3>Dr. Brain Adam</h3>
+                        <h5>Neurologist</h5>
+                    </div>
+                </div>
+                <div class="doctor pediatric" onclick="window.location.href='/doctor/4'">
+                    <img src="doctor4.jpg">
+                    <div class="details">
+                        <h3>Dr. Jessica Brown</h3>
+                        <h5>Pediatrician</h5>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+        <!-- <script>
+            function filterCategory(category){
+                const doctors=document.querySelectorAll(".doctor");
+                doctors.forEach(doctor=>{
+                    if(category==="all"){
+                        doctor.style.display="block";
+                    }
+                    else{
+                        if(doctor.classList.contains(category)){
+                            doctor.style.display="block";
+                        }
+                        else{
+                            doctor.style.display="none";
+                        }
+                    }
+                })
+            }
+        </script> -->
+        <script>
+            function filterCategory(category) {
+            const doctors = document.querySelectorAll(".doctor");
+
+            doctors.forEach(doctor => {
+                if (category === "all" || doctor.classList.contains(category)) {
+                    doctor.style.display = "";
+                } else {
+                    doctor.style.display = "none";
+                }
+            });
+            }
+        </script>
+
+    </body>
+</html>
+
